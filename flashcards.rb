@@ -22,6 +22,7 @@ end
 
 card1 = Card.new("cat", "neko")
 card2 = Card.new("dog", "inu")
+card3 = Card.new("snake", "hebi")
 # card1.front = "Cat"
 # puts card1.front
 
@@ -42,14 +43,20 @@ class Deck
     @cards = []
   end
 
-  def <<(card)
+  def << card
     @cards << card
+  end
+
+  def shuffle
+    @cards.shuffle!
   end
 end
 
 deck = Deck.new("Japanese")
-deck <<(card1)
-deck <<(card2)
+deck << card1
+deck << card2
+deck << card3
+deck.shuffle
 
 deck.cards.each do |card|
   front = card.front
