@@ -1,3 +1,34 @@
+class Application
+  def initialize
+    @decks = []
+  end
+
+  def << deck
+    @decks << deck
+  end
+
+  def play
+    display_decks
+    puts "Pick a deck: "
+    deck = get_deck
+    deck.play
+  end
+
+  def display_decks
+    @decks.each do |deck|
+      puts deck.name
+    end
+  end
+
+  def get_deck
+    name = gets.chomp
+    @decks.detect do |deck|
+      deck.name == name
+    end
+  end
+
+end
+
 class Card
   attr_accessor :front, :back
 
@@ -8,6 +39,17 @@ class Card
 
   def correct?(guess)
     guess == @back
+  end
+
+  def play
+    print "#{front} > "
+    guess = gets.chomp
+
+    if correct?(guess)
+      puts "Correct"
+    else
+      puts "Incorrect. The answer was #{back}."
+    end
   end
 
   # def front replaced by attr_reader
@@ -40,7 +82,7 @@ card3 = Card.new("snake", "hebi")
 #   }
 
 class Deck
-  attr_accessor :cards
+  attr_accessor :cards, :name
 
   def initialize(name)
     @name = name
@@ -51,28 +93,44 @@ class Deck
     @cards << card
   end
 
+  def play
+    puts "Playing the #{name} deck"
+    shuffle
+    @cards.each do |card|
+      card.play
+    end
+  end
+
   def shuffle
     @cards.shuffle!
   end
+
+
 end
 
 deck = Deck.new("Japanese")
 deck << card1
 deck << card2
 deck << card3
-deck.shuffle
 
-deck.cards.each do |card|
-  front = card.front
-  back = card.back
+deck2 = Deck.new("Russian")
 
-  print "#{front} > "
-  guess = gets.chomp
+app = Application.new
+app << deck
+app << deck2
+app.play
+
+# deck.cards.each do |card|
+#   front = card.front
+#   back = card.back
+
+#   print "#{front} > "
+#   guess = gets.chomp
 
 
-if card.correct?(guess)
-  puts "Correct"
-else
-  puts "Incorrect. The answer was #{back}."
-end
-end
+# if card.correct?(guess)
+#   puts "Correct"
+# else
+#   puts "Incorrect. The answer was #{back}."
+# end
+# end
