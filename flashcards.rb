@@ -1,10 +1,14 @@
-card1 = "cat|neko"
-card2 = "dog|inu"
+
+card1 = {
+  "front" => "cat", "back" => "neko"
+  }
+card2 = {
+  "front" => "dog", "back" => "inu"
+  }
 deck = [card1, card2]
 deck.each do |card|
-  card_parts = card.split("|")
-  front = card_parts[0]
-  back = card_parts[1]
+  front = card["front"]
+  back = card["back"]
 
   print "#{front} > "
   guess = gets.chomp
