@@ -6,6 +6,10 @@ class Card
     @back = back
   end
 
+  def correct?(guess)
+    guess == @back
+  end
+
   # def front replaced by attr_reader
   #   @front
   # end
@@ -66,7 +70,7 @@ deck.cards.each do |card|
   guess = gets.chomp
 
 
-if guess == back
+if card.correct?(guess)
   puts "Correct"
 else
   puts "Incorrect. The answer was #{back}."
