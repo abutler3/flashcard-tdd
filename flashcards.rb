@@ -33,8 +33,25 @@ card2 = Card.new("dog", "inu")
 # card2 = {
 #   front: "dog", back: "inu"
 #   }
-deck = [card1, card2]
-deck.each do |card|
+
+class Deck
+  attr_accessor :cards
+
+  def initialize(name)
+    @name = name
+    @cards = []
+  end
+
+  def add_card(card)
+    @cards << card
+  end
+end
+
+deck = Deck.new("Japanese")
+deck.add_card(card1)
+deck.add_card(card2)
+
+deck.cards.each do |card|
   front = card.front
   back = card.back
 
