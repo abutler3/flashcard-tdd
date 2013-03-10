@@ -66,13 +66,13 @@ class Card
   #
 end
 
-card1 = Card.new("cat", "neko")
-card2 = Card.new("dog", "inu")
-card3 = Card.new("snake", "hebi")
-# card1.front = "Cat"
-# puts card1.front
 
-
+class MultipleAnswerCard < Card
+  def correct?(guess)
+    answers = @back.split(",")
+    answers.any? { |answer| answer == guess }
+  end
+end
 
 # card1 = {
 #   front: "cat", back: "neko"
@@ -108,11 +108,17 @@ class Deck
 
 end
 
+card1 = Card.new("cat", "neko")
+card2 = Card.new("dog", "inu")
+card3 = Card.new("snake", "hebi")
+card4 = MultipleAnswerCard.new("Violin", "baoirin,viiorin")
+# card1.front = "Cat"
+# puts card1.front
 deck = Deck.new("Japanese")
 deck << card1
 deck << card2
 deck << card3
-
+deck << card4
 deck2 = Deck.new("Russian")
 
 app = Application.new
