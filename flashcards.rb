@@ -111,7 +111,7 @@ end
 card1 = Card.new("cat", "neko")
 card2 = Card.new("dog", "inu")
 card3 = Card.new("snake", "hebi")
-card4 = MultipleAnswerCard.new("Violin", "baoirin,viiorin")
+card4 = MultipleAnswerCard.new("Violin", "baiorin,viiorin")
 # card1.front = "Cat"
 # puts card1.front
 deck = Deck.new("Japanese")
